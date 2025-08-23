@@ -14,42 +14,42 @@
 </template>
 
 <script setup lang="ts">
-  import { useAuth } from '@/stores/auth';
-  const auth = useAuth()
+import { useAuth } from '@/stores/auth';
+const auth = useAuth()
 </script>
 
 <style>
-  .bar {
-    display: flex;
-    justify-content: flex-end;
-    gap: .5rem;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
+.bar {
+  display: flex;
+  justify-content: flex-end;
+  gap: .5rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
 
-  .user {
-    display: flex;
-    gap: .5rem;
-    align-items: center;
-  }
+.user {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+}
 
-  img {
-    width: 28px;
-    height: 28px;
-    border-radius: 999px;
-  }
+img {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+}
 
-  button {
-    padding:.5rem .8rem;
-    border:1px solid #ddd;
-    border-radius:.6rem;
-    background:#111;
-    color:#fff;
-    cursor:pointer
-  }
+button {
+  padding: .5rem .8rem;
+  border: 1px solid #ddd;
+  border-radius: .6rem;
+  background: #111;
+  color: #fff;
+  cursor: pointer
+}
 
-  button.ghost{
-    background:transparent;
-    color:#111
-  }
+button.ghost {
+  background: transparent;
+  color: #111
+}
 </style>

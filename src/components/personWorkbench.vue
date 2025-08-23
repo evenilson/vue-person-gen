@@ -89,14 +89,72 @@ reloadList()
 </script>
 
 <style scoped>
-.box{border:1px solid #eee;border-radius:1rem;padding:1rem;margin-bottom:1rem;background:#fff}
-.row{display:flex;gap:.5rem;align-items:center;justify-content:space-between;flex-wrap:wrap}
-.card{display:grid;grid-template-columns:128px 1fr;gap:1rem}
-img{width:128px;height:128px;object-fit:cover;border-radius:.75rem}
-button{padding:.5rem .8rem;border:1px solid #ddd;border-radius:.6rem;background:#111;color:#fff;cursor:pointer}
-button.ghost{background:transparent;color:#111}
-.chip{display:inline-block;padding:.1rem .5rem;border-radius:999px;background:#f1f5f9;margin-right:.35rem;margin-top:.2rem}
-.warn{color:#8a5700;background:#fff8e1;padding:.4rem .6rem;border-radius:.5rem}
-.muted{color:#6b7280}
-@media (max-width:640px){.card{grid-template-columns:1fr}}
+.box {
+  border: 1px solid #eee;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: #fff
+}
+
+.row {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 128px 1fr;
+  gap: 1rem
+}
+
+img {
+  width: 128px;
+  height: 128px;
+  object-fit: cover;
+  border-radius: .75rem
+}
+
+button {
+  padding: .5rem .8rem;
+  border: 1px solid #ddd;
+  border-radius: .6rem;
+  background: #111;
+  color: #fff;
+  cursor: pointer
+}
+
+button.ghost {
+  background: transparent;
+  color: #111
+}
+
+.chip {
+  display: inline-block;
+  padding: .1rem .5rem;
+  border-radius: 999px;
+  background: #f1f5f9;
+  margin-right: .35rem;
+  margin-top: .2rem
+}
+
+.warn {
+  color: #8a5700;
+  background: #fff8e1;
+  padding: .4rem .6rem;
+  border-radius: .5rem
+}
+
+.muted {
+  color: #6b7280
+}
+
+@media (max-width:640px) {
+  .card {
+    grid-template-columns: 1fr
+  }
+}
 </style>
