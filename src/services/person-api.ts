@@ -19,10 +19,41 @@ export const PersonSchema = z.object({
 
 export type Person = z.infer<typeof PersonSchema>
 
+async function fetchWithTimeout(input: RequestInfo | URL, init: RequestInit & { timeoutMs?: number } = {}) {
+  const { timeoutMs = 8000, ...rest } = init
+  const controller = new AbortController()
+  const id = setTimeout(() => controller.abort(), timeoutMs)
+  try {
+    const response = await fetch(input, { ...rest, signal: controller.signal })
+    return response
+  } finally {
+    clearTimeout(id)
+  }
+}
+
+async function fetchJsonWithRetry<T>(url: string, opts?: { retries?: number; timeoutMs?: number }): Promise<T> {
+  const retries = opts?.retries ?? 2
+  const timeoutMs = opts?.timeoutMs ?? 8000
+  let lastError: unknown
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      const res = await fetchWithTimeout(url, { timeoutMs })
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      return await res.json() as T
+    } catch (err) {
+      lastError = err
+      if (attempt === retries) break
+      await new Promise(r => setTimeout(r, 400 * (attempt + 1)))
+    }
+  }
+  throw lastError instanceof Error ? lastError : new Error('Falha ao buscar dados')
+}
+
 export async function fetchRandomPerson(): Promise<Person> {
-  const res = await fetch('https://randomuser.me/api/?nat=br,us')
-  if (!res.ok) throw new Error('Falha ao obter pessoa')
-  const { results } = await res.json()
+  const { results } = await fetchJsonWithRetry<{ results: any[] }>('https://randomuser.me/api/?nat=br', {
+    retries: 2,
+    timeoutMs: 8000
+  })
   const r = results[0]
 
   const fullName = `${capitalize(r.name.first)} ${capitalize(r.name.last)}`
