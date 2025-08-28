@@ -1,55 +1,89 @@
-# vue-person-gen
+# Vue Person Generator
 
-This template should help get you started developing with Vue 3 in Vite.
+A Vue 3 application for generating realistic person profiles for testing and prototyping purposes.
 
-## Recommended IDE Setup
+## Features
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Generate random person profiles with realistic data
+- Google authentication via Supabase
+- Save generated persons to database
+- Copy person data to clipboard
+- Download person data as JSON
+- Responsive design with dark/light mode support
+- Accessibility features
 
-## Type Support for `.vue` Imports in TS
+## Development
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
+```bash
+# Install dependencies
 pnpm install
-```
 
-### Compile and Hot-Reload for Development
-
-```sh
+# Start development server
 pnpm dev
-```
 
-### Type-Check, Compile and Minify for Production
-
-```sh
+# Build for production
 pnpm build
+
+# Preview production build
+pnpm preview
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+## Environment Setup
 
-```sh
-pnpm test:unit
+Create a `.env` file with your Supabase credentials:
+
+```env
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
+## Tech Stack
 
-```sh
-pnpm test:e2e:dev
+- **Frontend**: Vue 3 + TypeScript + Vite
+- **Styling**: CSS with OKLCH color space
+- **State Management**: Pinia
+- **Authentication**: Supabase Auth
+- **Database**: Supabase PostgreSQL
+- **Testing**: Vitest (unit) + Cypress (e2e)
+- **API**: RandomUser.me for person data
+
+## Project Structure
+
+```
+src/
+├── components/          # Vue components
+│   ├── authBar.vue     # Authentication UI
+│   └── personWorkbench.vue # Main app interface
+├── services/           # API and data services
+│   ├── person-api.ts   # Person generation API
+│   └── person-repo.ts  # Database operations
+├── stores/             # Pinia stores
+│   └── auth.ts         # Authentication state
+├── lib/                # External library configs
+│   └── supabase-client.ts
+└── utils/              # Utility functions
+    └── general.ts
+
+cypress/
+├── e2e/                # E2E test files
+│   ├── app.cy.ts       # Core app tests
+│   ├── auth.cy.ts      # Authentication tests
+│   ├── database.cy.ts  # Database tests
+│   ├── accessibility.cy.ts # A11y tests
+│   └── responsive.cy.ts # Responsive tests
+└── support/
+    └── commands.ts     # Custom Cypress commands
 ```
 
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
+## Contributing
 
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new functionality
+5. Run the test suite
+6. Submit a pull request
 
-```sh
-pnpm build
-pnpm test:e2e
-```
+## License
+
+MIT
